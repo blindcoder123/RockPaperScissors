@@ -25,8 +25,12 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = window.prompt("Rock, Paper, Scissors?").toLowerCase();
     computerSelection = computerPlay();
+    do {
+        playerSelection = window.prompt("Rock, Paper, Scissors?").toLowerCase();
+    }
+    while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors");
+    
 
     if (playerSelection == "scissors" & computerSelection == "rock") {
         result = "You Lose!";
