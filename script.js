@@ -24,9 +24,27 @@ function computerPlay() {
     return data[data.length - 1][0];
 }
 
+let total = 0;
+
+const rock = document.querySelector('#Rock');
+rock.addEventListener('click', () => {
+    playRound("rock", computerPlay);
+});
+
+const paper = document.querySelector('#Paper');
+paper.addEventListener('click', () => {
+    playRound("paper", computerPlay);
+});
+
+const scissors = document.querySelector('#Scissors');
+scissors.addEventListener('click', () => {
+    playRound("scissors", computerPlay);
+});
+
 function playRound(playerSelection, computerSelection) {
     computerSelection = computerPlay();
-    
+    let winCounter = 0;
+    let result = "";
 
     if (playerSelection == "scissors" & computerSelection == "rock") {
         result = "You Lose!";
@@ -44,16 +62,32 @@ function playRound(playerSelection, computerSelection) {
         result = "Tie!";
     };
 
-    console.log(result);
+    if (result == "You Win!") {
+        total++;
+    }
+
+    const container = document.querySelector('#container');
+    const content = document.createElement('div');
+    const score = document.createElement('div');
+
+    content.classList.add('content');
+    score.classList.add('score');
+
+    content.textContent = result;
+    score.textContent = total;
+    
+
+    container.appendChild(content);
+    container.appendChild(score);
+    
+
+    if (total == 5) {
+        alert("You Win the Game!");
+    }
+
     return result;
     
 }
-
-
-document.getElementById("Rock").addEventListener("click", playRound);
-
-
-
 
 
 /*function game() {
